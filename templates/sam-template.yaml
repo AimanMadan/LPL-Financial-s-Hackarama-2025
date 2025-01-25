@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  GetStockPricesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src.handlers.get_stock_prices.lambda_handler
+      Runtime: python3.9
+      Timeout: 10
+      Environment:
+        Variables:
+          STOCK_API_KEY: !Ref StockApiKey
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+  GetNewsArticlesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src.handlers.get_news_articles.lambda_handler
+      Runtime: python3.9
+      Timeout: 10
+      Environment:
+        Variables:
+          NEWS_API_KEY: !Ref NewsApiKey
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+  TranslateArticleFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src.handlers.translate_article.lambda_handler
+      Runtime: python3.9
+      Timeout: 10
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+Parameters:
+  StockApiKey:
+    Type: String
+    Description: API Key for stock prices API
+
+  NewsApiKey:
+    Type: String
+    Description: API Key for news articles API
