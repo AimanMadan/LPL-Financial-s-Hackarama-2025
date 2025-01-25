@@ -1,4 +1,4 @@
-# Financial App Backend
+# LPL-Financial-s-Hackarama-2025 Backend
 
 This backend provides the core services for the financial app, including:
 - Fetching stock prices.
